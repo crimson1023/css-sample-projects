@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrp {
+            background-color: #1E1F26; width: 100% ; height: 800px; position: relative; 
+        }
+
+        .bg-img {
+            width: 100%; height: 100% ; object-fit: cover; position: absolute;   mix-blend-mode: color-burn;
+        }
+        .bg-div {
+            background: url('bg.webp'); background-size:contain; width:100%; height: 100%; 
+        }
+        .div1 {
+            background-color: #1E1F26;
+            width: 500px;
+            height: 500px;
+            border: 1px solid white;
+            left: 50%;
+            top: 50%;
+            color: white
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="wrp">
+        <div class="bg-div"></div>
+    </div> -->
+    <div class="wrp">
+        <img src="test.png" class="bg-img" />
+        <div class="div1" style="left: 500px"> sdsdfds</div>
+    </div>
+    <div class="div1"></div>
+    <!-- <div class="wrp">
+        <img src="bg.png" style="width: 100%; height: 100% ; object-fit: cover;"/>
+    </div> -->
+</body>
+</html>
