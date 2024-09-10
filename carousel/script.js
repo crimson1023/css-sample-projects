@@ -1,56 +1,42 @@
-// script.js
-let currentIndex = 0;
-const slides = document.querySelectorAll('.carousel-item');
-const dotsContainer = document.querySelector('.carousel-dots');
-const itemsVisible = Math.round(document.querySelector('.carousel').offsetWidth / slides[0].offsetWidth);
+const state = {};
+const carouselList = document.querySelector(".carousel__list");
+const carouselItems = document.querySelectorAll(".carousel__item");
+const elems = Array.from(carouselItems);
 
-function showSlide(index) {
-  if (index >= slides.length - itemsVisible + 1) {
-    currentIndex = 0;
-  } else if (index < 0) {
-    currentIndex = slides.length - itemsVisible;
-  } else {
-    currentIndex = index;
+carouselList.addEventListener("click", function (event) {
+  var newActive = event.target.parentNode;
+  var isItem = newActive.closest(".carousel__item");
+
+  if (!isItem || newActive.classList.contains("carousel__item_active")) {
+    return;
   }
 
-  document.querySelector('.carousel-inner').style.transform = `translateX(-${currentIndex * 100 / itemsVisible}%)`;
-  updateDots();
-}
+  update(newActive);
+});
 
-function nextSlide() {
-  showSlide(currentIndex + 1);
-}
+const update = function (newActive) {
+  const newActivePos = parseInt(newActive.dataset.pos); // Parse position as integer
 
-function prevSlide() {
-  showSlide(currentIndex - 1);
-}
+  const totalItems = elems.length; // Total number of carousel items
 
-function currentSlide(index) {
-  showSlide(index);
-}
+  // Update each element's position in the cycle
+  elems.forEach((item) => {
+    const currentPos = parseInt(item.dataset.pos);
+    const newPos = getPos(currentPos, newActivePos, totalItems);
+    item.dataset.pos = newPos;
+  });
+};
 
-function updateDots() {
-  dotsContainer.innerHTML = '';
-  for (let i = 0; i < Math.ceil(slides.length / itemsVisible); i++) {
-    const dot = document.createElement('span');
-    dot.className = 'dot';
-    if (i === currentIndex) {
-      dot.classList.add('active');
-    }
-    dot.addEventListener('click', () => currentSlide(i));
-    dotsContainer.appendChild(dot);
+// Calculate new position for each element
+const getPos = function (current, active, totalItems) {
+  const diff = current - active;
+
+  // Use modulo to loop through all images
+  if (diff < -Math.floor(totalItems / 2)) {
+    return totalItems + diff;
+  } else if (diff > Math.floor(totalItems / 2)) {
+    return diff - totalItems;
   }
-}
 
-let autoSlide = setInterval(nextSlide, 3000);
-
-document.querySelector('.carousel').addEventListener('mouseenter', () => {
-  clearInterval(autoSlide);
-});
-
-document.querySelector('.carousel').addEventListener('mouseleave', () => {
-  autoSlide = setInterval(nextSlide, 3000);
-});
-
-// Initialize
-showSlide(currentIndex);
+  return diff;
+};
