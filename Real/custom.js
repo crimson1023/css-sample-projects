@@ -1,5 +1,5 @@
 (() => {
-  const controlCarousel = (contianerId) => {
+  const controlCarousel = (contianerId, carouselType) => {
     const container = document.getElementById(contianerId);
     const carouselItems = container.querySelectorAll(".vf-q-choice");
     const bgElement = document.createElement("div");
@@ -103,7 +103,19 @@
       container.addEventListener("mouseup", onMouseUp);
     };
 
+    const carouselClassName = (_carouselType) => {
+      switch (_carouselType) {
+        case "3D":
+          return "vf-c-3d";
+        case "OCTAGON":
+          return "vf-c-octagon";
+
+        default:
+          break;
+      }
+    };
     const init = () => {
+      container.classList.add(carouselClassName(carouselType));
       //init  carousel card data-pos
       elems.forEach(
         (item, index) =>
@@ -119,14 +131,14 @@
   };
 
   setTimeout(() => {
-    controlCarousel("q-we40qm6");
-    controlCarousel("q-u4wxh3p");
-    controlCarousel("q-u5cud6n");
-    controlCarousel("q-ja59mdb");
-    controlCarousel("q-tqcwcnz");
-    controlCarousel("q-17ibijzz");
-    controlCarousel("q-189atjq7");
-    controlCarousel("q-we6j6w5");
-    controlCarousel("q-15klcwf3");
+    controlCarousel("q-we40qm6", "3D");
+    controlCarousel("q-u4wxh3p", "OCTAGON");
+    controlCarousel("q-u5cud6n", "OCTAGON");
+    controlCarousel("q-ja59mdb", "OCTAGON");
+    controlCarousel("q-tqcwcnz", "OCTAGON");
+    controlCarousel("q-17ibijzz", "OCTAGON");
+    controlCarousel("q-189atjq7", "OCTAGON");
+    controlCarousel("q-we6j6w5", "OCTAGON");
+    controlCarousel("q-15klcwf3", "OCTAGON");
   }, 250);
 })();
