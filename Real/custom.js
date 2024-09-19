@@ -140,5 +140,7 @@
     controlCarousel("q-189atjq7", "OCTAGON");
     controlCarousel("q-we6j6w5", "OCTAGON");
     controlCarousel("q-15klcwf3", "OCTAGON");
+    controlCarousel("q-zurhvig", "3D");
+    controlCarousel("q-19d0t48", "3D");
   }, 250);
 })();
