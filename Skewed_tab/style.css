@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    background-color: rgb(13, 19, 17);
+}
+.container {
+    display: inline-block;
+    border: 1px solid red;
+    border-radius: 10px;
+    overflow: hidden;
+    transform: translateX(-25px);
+    margin: 0;
+    padding: 0;
+}
+.sub-container {
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid white;
+    border-radius: 10px;
+    transform: translateX(50px);
+    margin: 0;
+    padding: 0;
+}
+.tab {
+    display: inline-flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #222;
+    transform: skew(20deg) translateX(-14px);
+    color: aqua;
+    font-size: 25px;
+    border-radius: 10px;
+    
+}
+
+.tab:first-child {
+    padding-left: 32px;
+}
+
+.tab:last-child {
+    padding-right: 52px;
+}
+.title {
+    transform: skew(-20deg);
+}
